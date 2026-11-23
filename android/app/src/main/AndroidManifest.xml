@@ -1,0 +1,83 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Read, send and receive text messages, and show who wrote; only after the user allows each. -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <!-- Modo MCP through the relay, only when the user turns it on (off by default). -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="com.zirakusa.gatewayhub.permission.LINK" android:protectionLevel="signature"
+        android:label="@string/hub_link_permission" />
+    <permission android:name="com.zirakusa.family.permission.SUMMARY" android:protectionLevel="signature"
+        android:label="@string/summary_permission" />
+    <queries>
+        <package android:name="com.zirakusa.gatewayhub" />
+        <intent><action android:name="android.intent.action.DIAL" /></intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.NoActionBar">
+        <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- «Escribir SMS» from other apps (and required of a default SMS app). -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.zirakusa.gatewayhub.action.APP" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.zirakusa.gatewayhub.module" android:value="sms_" />
+            <meta-data android:name="com.zirakusa.gatewayhub.link" android:value="${applicationId}.hublink" />
+            <meta-data android:name="com.zirakusa.family.summary" android:value="${applicationId}.summary" />
+        </activity>
+        <!-- New SMS: as default app (SMS_DELIVER, only Android may send it) and otherwise (SMS_RECEIVED). -->
+        <receiver android:name=".SmsReceiver" android:exported="true" android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <!-- MMS: required of a default SMS app; pictures aren't supported yet. -->
+        <receiver android:name=".MmsReceiver" android:exported="true" android:permission="android.permission.BROADCAST_WAP_PUSH">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
+        <!-- «Responder con un mensaje» when rejecting a call; only the phone app may ask. -->
+        <service android:name=".RespondService" android:exported="true" android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+            </intent-filter>
+        </service>
+        <!-- Our own notification buttons and send results: never reachable by other apps. -->
+        <receiver android:name=".SentReceiver" android:exported="false" />
+        <receiver android:name=".ActionReceiver" android:exported="false" />
+        <provider android:name=".SummaryProvider" android:authorities="${applicationId}.summary"
+            android:exported="true" android:permission="com.zirakusa.family.permission.SUMMARY" />
+        <provider android:name=".mcp.HubLinkProvider" android:authorities="${applicationId}.hublink"
+            android:exported="true" android:permission="com.zirakusa.gatewayhub.permission.LINK" />
+    </application>
+</manifest>
