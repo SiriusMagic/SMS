@@ -32,7 +32,11 @@ class MainActivity : ComponentActivity() {
     private lateinit var state: SmsState
     private lateinit var book: AndroidBook
     private val allow = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { state.load() }
-    private val role = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { state.load() }
+    /** After Android's «¿Usar SMS como app de mensajes?»: the rest of the permissions (SMS ones come with the role). */
+    private val role = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        state.load()
+        if (book.isDefault) askPermissions() else state.roleDeclined = true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +46,7 @@ class MainActivity : ComponentActivity() {
         state = SmsState(SharedValues(this), book) { book.isDefault }
         App.onChanged = { state.load() }
         McpMode.load(this)
-        val actions = AppActions(allow = ::ask, makeDefault = ::makeDefault, call = { open(Intent(Intent.ACTION_DIAL, "tel:${android.net.Uri.encode(it)}".toUri())) },
+        val actions = AppActions(allow = ::ask, makeDefault = ::makeDefault, settings = ::settings, call = { open(Intent(Intent.ACTION_DIAL, "tel:${android.net.Uri.encode(it)}".toUri())) },
             copy = { copy("SMS", it) }, copyLink = { copy("SMS MCP", it) }, goToHub = ::goToHub)
         state.load()
         if (!state.allowed) ask()
@@ -69,7 +73,15 @@ class MainActivity : ComponentActivity() {
         if (to.isNotBlank()) state.open(to, text)
     }
 
-    private fun ask() = allow.launch(buildList {
+    /**
+     * «Permitir». Android treats reading SMS as a restricted permission: an app installed by hand only gets it as the
+     * phone's messages app (otherwise it is refused silently and the screen never moves). So the role is asked first.
+     */
+    private fun ask() {
+        if (Build.VERSION.SDK_INT >= 29 && !book.isDefault) makeDefault() else askPermissions()
+    }
+
+    private fun askPermissions() = allow.launch(buildList {
         add(Manifest.permission.READ_SMS); add(Manifest.permission.SEND_SMS); add(Manifest.permission.RECEIVE_SMS); add(Manifest.permission.READ_CONTACTS)
         if (Build.VERSION.SDK_INT >= 33) add(Manifest.permission.POST_NOTIFICATIONS)
     }.toTypedArray())
@@ -81,6 +93,9 @@ class MainActivity : ComponentActivity() {
             ?.let { role.launch(it.createRequestRoleIntent(RoleManager.ROLE_SMS)) }
         else @Suppress("DEPRECATION") role.launch(Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT).putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, packageName))
     }
+
+    /** The app's page in Android's settings (⋮ › «Permitir ajustes restringidos», then Permisos). */
+    private fun settings() = open(Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, "package:$packageName".toUri()))
 
     private fun open(intent: Intent) = try { startActivity(intent) } catch (_: ActivityNotFoundException) { Toast.makeText(this, R.string.no_app, Toast.LENGTH_SHORT).show() }
 

@@ -12,8 +12,8 @@ android {
         applicationId = "com.zirakusa.sms"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.1.1"
+        versionCode = 3
+        versionName = "0.1.2"
         // Modo MCP: the same public relay as the rest of the family (one device id per app). Empty = no MCP.
         val relayUrl = (project.findProperty("smsRelayUrl") as String?).orEmpty().trimEnd('/')
         buildConfigField("String", "RELAY_URL", "\"$relayUrl\"")

@@ -58,6 +58,12 @@ import java.time.format.FormatStyle
             Icon(Icons.Outlined.Sms, null, Modifier.size(48.dp), tint = SmsColors.AccentText)
             Text(stringResource(R.string.allow_text), color = SmsColors.Muted, textAlign = TextAlign.Center)
             MainButton(stringResource(R.string.allow), onClick = actions.allow)
+            // Without being the messages app, Android refuses SMS to an app installed by hand: the other way, by settings.
+            if (state.roleDeclined) {
+                Text(stringResource(R.string.allow_restricted), color = SmsColors.Muted, textAlign = TextAlign.Center, fontSize = 14.sp)
+                Text(stringResource(R.string.open_settings), Modifier.clip(CircleShape).clickable(onClick = actions.settings).padding(horizontal = 16.dp, vertical = 10.dp),
+                    color = SmsColors.AccentText, fontSize = 15.sp)
+            }
         } }
         OutlinedTextField(state.query, { state.query = it.take(100) }, Modifier.fillMaxWidth(), singleLine = true, shape = CircleShape,
             leadingIcon = { Icon(Icons.Outlined.Search, null) }, placeholder = { Text(stringResource(R.string.search)) })

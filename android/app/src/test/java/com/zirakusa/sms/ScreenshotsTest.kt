@@ -47,5 +47,9 @@ class ScreenshotsTest {
         shot("settings")
         book.allowed = false; state.load(); state.page = Page.THREADS
         compose.onNodeWithText("Permitir").assertExists()
+        // «Permitir» refused as messages app: the way through Android's settings shows.
+        state.roleDeclined = true
+        compose.onNodeWithText("Abrir ajustes de SMS").assertExists()
+        shot("permission-restricted")
     }
 }

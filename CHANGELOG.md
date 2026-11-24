@@ -1,3 +1,10 @@
+# SMS 0.1.2
+
+- **«Permitir» ya deja pasar**: Android solo da el permiso de leer SMS a la app de mensajes del teléfono (a una app
+  instalada a mano se lo niega en silencio, por eso la pantalla no avanzaba). Ahora «Permitir» pide primero que SMS sea tu
+  app de mensajes y después los contactos y las notificaciones. Si dices que no, explica cómo hacerlo desde los ajustes
+  («Permitir ajustes restringidos») con un botón que los abre.
+
 # SMS 0.1.1
 
 - **Conectar todas** (Gateway Hub 0.0.21): con un toque en el Hub se activa aquí «Redireccionar a Hub» y la app queda

@@ -22,6 +22,8 @@ class SmsState(kv: KeyValues, private val book: SmsBook, private val isDefault: 
     var page by mutableStateOf(Page.THREADS)
     var messages by mutableStateOf(emptyList<Message>()); private set
     var allowed by mutableStateOf(true); private set
+    /** The user said no to «SMS como app de mensajes»: the screen shows the way through Android's settings. */
+    var roleDeclined by mutableStateOf(false)
     var defaultApp by mutableStateOf(false); private set
     var query by mutableStateOf("")
     /** The number of the conversation open (also a new one without messages yet). */

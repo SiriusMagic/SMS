@@ -62,7 +62,7 @@
     <string name="mcp_settings_hint">Tu IA (Claude, ChatGPT…) o Gateway Hub leen tus mensajes (sin códigos) y te proponen respuestas.</string>
     <string name="messages">Mensajes</string>
     <string name="search">Buscar</string>
-    <string name="allow_text">Para ver, enviar y recibir tus SMS, permite los mensajes, los contactos y las notificaciones.</string>
+    <string name="allow_text">Para leer tus SMS, Android pide que SMS sea tu app de mensajes. Toca «Permitir» y elige SMS; luego permite los contactos y las notificaciones.</string>
     <string name="allow">Permitir</string>
     <string name="no_app">No hay una app para esto</string>
     <string name="not_default">SMS no es tu app de mensajes principal: lees y envías igual. Toca para hacerla predeterminada.</string>
@@ -102,4 +102,6 @@
     <string name="icon_blue">Azul</string>
     <string name="icon_green">Verde</string>
     <string name="icon_hint">Cambia el icono de la pantalla de inicio. Algunos lanzadores tardan unos segundos en mostrarlo.</string>
+    <string name="allow_restricted">Si no quieres cambiar de app de mensajes: abre los ajustes de SMS, toca ⋮ › «Permitir ajustes restringidos» y luego Permisos › SMS › Permitir.</string>
+    <string name="open_settings">Abrir ajustes de SMS</string>
 </resources>

@@ -11,6 +11,8 @@ import com.zirakusa.sms.ui.screens.ThreadsScreen
 class AppActions(
     val allow: () -> Unit = {},
     val makeDefault: () -> Unit = {},
+    /** Android's page of this app (to allow restricted settings when the role was refused). */
+    val settings: () -> Unit = {},
     val call: (String) -> Unit = {},
     val copy: (String) -> Unit = {},
     val copyLink: (String) -> Unit = {},

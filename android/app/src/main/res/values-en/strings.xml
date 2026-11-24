@@ -61,7 +61,7 @@
     <string name="mcp_settings_hint">Your AI (Claude, ChatGPT…) or Gateway Hub read your messages (without codes) and propose replies.</string>
     <string name="messages">Messages</string>
     <string name="search">Search</string>
-    <string name="allow_text">To see, send and receive your texts, allow messages, contacts and notifications.</string>
+    <string name="allow_text">To read your SMS, Android needs SMS to be your messages app. Tap «Allow» and choose SMS; then allow contacts and notifications.</string>
     <string name="allow">Allow</string>
     <string name="no_app">No app for this</string>
     <string name="not_default">SMS isn\'t your main messages app: you can still read and send. Tap to make it the default.</string>
@@ -101,4 +101,6 @@
     <string name="icon_blue">Blue</string>
     <string name="icon_green">Green</string>
     <string name="icon_hint">Changes the home-screen icon. Some launchers take a few seconds to show it.</string>
+    <string name="allow_restricted">If you do not want to change your messages app: open SMS settings, tap ⋮ › «Allow restricted settings», then Permissions › SMS › Allow.</string>
+    <string name="open_settings">Open SMS settings</string>
 </resources>
