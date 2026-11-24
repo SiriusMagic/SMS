@@ -95,4 +95,11 @@
     <string name="summary_empty">No tienes mensajes sin leer</string>
     <string name="privacy_text">SMS no tiene anuncios ni estadísticas. Muestra y envía los mensajes del teléfono; los guarda Android, no una copia propia. Los códigos de verificación nunca salen por MCP ni hacia Inicio. Solo si activas el Modo MCP, la IA que conectes con un token puede leer tus mensajes (sin códigos) y, si el token es de lectura y escritura, proponerte un mensaje que solo se envía si tocas «Enviar». La IA nunca envía sola.</string>
     <plurals name="count_parts"><item quantity="one">%1$d · %2$d SMS</item><item quantity="many">%1$d · %2$d SMS</item><item quantity="other">%1$d · %2$d SMS</item></plurals>
+    <string name="icon_title">Icono de la app</string>
+    <string name="icon_original">Original</string>
+    <string name="icon_light">Claro</string>
+    <string name="icon_gold">Dorado</string>
+    <string name="icon_blue">Azul</string>
+    <string name="icon_green">Verde</string>
+    <string name="icon_hint">Cambia el icono de la pantalla de inicio. Algunos lanzadores tardan unos segundos en mostrarlo.</string>
 </resources>
