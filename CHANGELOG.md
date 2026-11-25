@@ -1,3 +1,12 @@
+# SMS 0.3.0
+
+- **El Modo MCP lo controla Arka**: se quita la pantalla «Modo MCP» (Activar MCP, Redireccionar a Hub, Crear token y la
+  lista de tokens). Activarlo, permitirlo en local y crear tokens se hace desde **Arka › MCP**; Ajustes › Modo MCP solo
+  muestra el estado y abre Arka. Si ya estaba conectada al hub, sigue conectada con el mismo enlace; los tokens LLM y Hub
+  creados aquí dejan de funcionar (créalos en Arka).
+- Lucía usa las herramientas en el teléfono aunque el enlace público esté apagado; lo decide «Permitir MCP local» en Arka.
+- App más ligera: 1,71 MB → 1,67 MB.
+
 # SMS 0.2.0
 
 - **Iconos nuevos**: Plano (el de fábrica), Cristal, 3D, Óleo y Píxel, en Ajustes › Icono de la app. Se quitan los
