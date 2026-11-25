@@ -1,3 +1,8 @@
+# SMS 0.2.0
+
+- **Iconos nuevos**: Plano (el de fábrica), Cristal, 3D, Óleo y Píxel, en Ajustes › Icono de la app. Se quitan los
+  anteriores; si tenías uno elegido, pasa solo al nuevo que ocupa su lugar.
+
 # SMS 0.1.2
 
 - **«Permitir» ya deja pasar**: Android solo da el permiso de leer SMS a la app de mensajes del teléfono (a una app

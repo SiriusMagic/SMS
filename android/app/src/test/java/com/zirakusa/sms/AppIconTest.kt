@@ -15,7 +15,7 @@ class AppIconTest {
     private fun state(icon: AppIcon) = context.packageManager.getComponentEnabledSetting(ComponentName(context, "com.zirakusa.sms.${icon.alias}"))
 
     @Test fun oneIconAtATime() {
-        AppIcon.load(context); assertEquals(AppIcon.ORIGINAL, AppIcon.current)
+        AppIcon.load(context); assertEquals(AppIcon.FLAT, AppIcon.current)
         AppIcon.entries.forEach { icon ->
             AppIcon.apply(context, icon)
             assertEquals(icon, AppIcon.current)
@@ -25,7 +25,7 @@ class AppIconTest {
         }
         AppIcon.entries.forEach { context.packageManager.setComponentEnabledSetting(ComponentName(context, "com.zirakusa.sms.${it.alias}"),
             PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP) }
-        AppIcon.load(context); assertEquals(AppIcon.ORIGINAL, AppIcon.current)      // never without an icon
-        assertEquals(PackageManager.COMPONENT_ENABLED_STATE_ENABLED, state(AppIcon.ORIGINAL))
+        AppIcon.load(context); assertEquals(AppIcon.FLAT, AppIcon.current)      // never without an icon
+        assertEquals(PackageManager.COMPONENT_ENABLED_STATE_ENABLED, state(AppIcon.FLAT))
     }
 }

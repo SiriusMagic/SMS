@@ -95,11 +95,11 @@
     <string name="privacy_text">SMS has no ads or analytics. It shows and sends the phone\'s messages; Android keeps them, not a copy of its own. Verification codes never leave through MCP or to Inicio. Only if you turn on MCP mode, the AI you connect with a token can read your messages (without codes) and, with a read-and-write token, propose a message that is only sent if you tap «Enviar». The AI never sends by itself.</string>
     <plurals name="count_parts"><item quantity="one">%1$d · %2$d text</item><item quantity="other">%1$d · %2$d texts</item></plurals>
     <string name="icon_title">App icon</string>
-    <string name="icon_original">Original</string>
-    <string name="icon_light">Light</string>
-    <string name="icon_gold">Gold</string>
-    <string name="icon_blue">Blue</string>
-    <string name="icon_green">Green</string>
+    <string name="icon_flat">Flat</string>
+    <string name="icon_glass">Glass</string>
+    <string name="icon_clay">3D</string>
+    <string name="icon_oil">Oil</string>
+    <string name="icon_pixel">Pixel</string>
     <string name="icon_hint">Changes the home-screen icon. Some launchers take a few seconds to show it.</string>
     <string name="allow_restricted">If you do not want to change your messages app: open SMS settings, tap ⋮ › «Allow restricted settings», then Permissions › SMS › Allow.</string>
     <string name="open_settings">Open SMS settings</string>

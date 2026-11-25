@@ -54,7 +54,7 @@ import com.zirakusa.sms.ui.theme.SmsColors
             }
             Item(stringResource(R.string.mcp_title), "$status · ${stringResource(R.string.mcp_settings_hint)}") { state.page = Page.MCP }
         }
-        IconCard(SmsColors.Card, SmsColors.Text, SmsColors.Muted, SmsColors.Accent, androidx.compose.ui.graphics.Color(0xFF0A1420))
+        IconCard(SmsColors.Card, SmsColors.Text, SmsColors.Muted, SmsColors.Accent)
         ThemeCard(state.themeMode, state.accent, state::changeTheme, state::changeAccent)
         Caption(stringResource(R.string.about))
         Group {
