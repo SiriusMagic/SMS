@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
         App.onChanged = { state.load() }
         McpMode.load(this)
         val actions = AppActions(allow = ::ask, makeDefault = ::makeDefault, settings = ::settings, call = { open(Intent(Intent.ACTION_DIAL, "tel:${android.net.Uri.encode(it)}".toUri())) },
-            copy = { copy("SMS", it) }, copyLink = { copy("SMS MCP", it) }, goToHub = ::goToHub)
+            copy = { copy("SMS", it) }, openArka = ::openArka)
         state.load()
         if (!state.allowed) ask()
         handle(intent)
@@ -104,11 +104,10 @@ class MainActivity : ComponentActivity() {
         Toast.makeText(this, R.string.copied, Toast.LENGTH_SHORT).show()
     }
 
-    /** «Ir al Hub»: copies the hub's link (in case it must be pasted) and opens the Gateway Hub app. */
-    private fun goToHub() {
-        copy("SMS › Gateway Hub", McpMode.hubLink())
-        val hub = packageManager.getLaunchIntentForPackage("com.zirakusa.gatewayhub")
-        if (hub != null) startActivity(hub) else Toast.makeText(this, R.string.mcp_paste_in_hub, Toast.LENGTH_LONG).show()
+    /** «Modo MCP» in Ajustes: it is turned on, allowed on the phone and given tokens in Arka, so this opens Arka. */
+    private fun openArka() {
+        val open = packageManager.getLaunchIntentForPackage("com.zirakusa.gatewayhub")
+        if (open != null) startActivity(open) else Toast.makeText(this, R.string.mcp_no_arka, Toast.LENGTH_LONG).show()
     }
 
     companion object { const val ADDRESS = "address"; const val DRAFT = "draft" }

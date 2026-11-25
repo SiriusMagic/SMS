@@ -13,7 +13,7 @@ import com.zirakusa.sms.data.SmsBook
 import com.zirakusa.sms.ui.theme.Accent
 import com.zirakusa.sms.ui.theme.ThemeMode
 
-enum class Page { THREADS, CONVERSATION, NEW, SETTINGS, MCP }
+enum class Page { THREADS, CONVERSATION, NEW, SETTINGS }
 
 /** The only owner of SMS's state: the messages, the conversation open, what is being written and the settings. Screens only paint. */
 class SmsState(kv: KeyValues, private val book: SmsBook, private val isDefault: () -> Boolean = { false }) {
@@ -69,7 +69,7 @@ class SmsState(kv: KeyValues, private val book: SmsBook, private val isDefault: 
         return ok
     }
 
-    fun back() { page = when (page) { Page.MCP -> Page.SETTINGS; else -> Page.THREADS }; if (page == Page.THREADS) load() }
+    fun back() { page = when (page) { else -> Page.THREADS }; if (page == Page.THREADS) load() }
 
     fun changePreview(on: Boolean) { preview = on; settings.preview = on }
     fun changeTheme(m: ThemeMode) { themeMode = m; settings.theme = m.name }
