@@ -20,6 +20,7 @@ import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
 import com.zirakusa.sms.data.SharedValues
 import com.zirakusa.sms.mcp.McpMode
+import com.zirakusa.sms.mcp.showMcpOptions
 import com.zirakusa.sms.ui.AppActions
 import com.zirakusa.sms.ui.Page
 import com.zirakusa.sms.ui.SmsApp
@@ -104,11 +105,7 @@ class MainActivity : ComponentActivity() {
         Toast.makeText(this, R.string.copied, Toast.LENGTH_SHORT).show()
     }
 
-    /** «Modo MCP» in Ajustes: it is turned on, allowed on the phone and given tokens in Arka, so this opens Arka. */
-    private fun openArka() {
-        val open = packageManager.getLaunchIntentForPackage("com.zirakusa.gatewayhub")
-        if (open != null) startActivity(open) else Toast.makeText(this, R.string.mcp_no_arka, Toast.LENGTH_LONG).show()
-    }
+    private fun openArka() = showMcpOptions(this)
 
     companion object { const val ADDRESS = "address"; const val DRAFT = "draft" }
 }

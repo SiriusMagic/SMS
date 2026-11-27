@@ -31,7 +31,7 @@
     <string name="mcp_status_off">Apagado</string>
     <string name="hub_link_permission">Vincular con Gateway Hub</string>
     <string name="summary_permission">Resumen para Inicio</string>
-    <string name="mcp_settings_hint">Lo controla Arka: activarlo, permitirlo en local y crear tokens.</string>
+    <string name="mcp_settings_hint">Configura el acceso local y la redirección a Hub.</string>
     <string name="messages">Mensajes</string>
     <string name="search">Buscar</string>
     <string name="allow_text">Para leer tus SMS, Android pide que SMS sea tu app de mensajes. Toca «Permitir» y elige SMS; luego permite los contactos y las notificaciones.</string>
@@ -76,5 +76,5 @@
     <string name="icon_hint">Cambia el icono de la pantalla de inicio. Algunos lanzadores tardan unos segundos en mostrarlo.</string>
     <string name="allow_restricted">Si no quieres cambiar de app de mensajes: abre los ajustes de SMS, toca ⋮ › «Permitir ajustes restringidos» y luego Permisos › SMS › Permitir.</string>
     <string name="open_settings">Abrir ajustes de SMS</string>
-    <string name="mcp_no_arka">Instala Arka para activar el Modo MCP.</string>
+    <string name="mcp_no_arka">Instala Arka para administrar los enlaces del Hub.</string>
 </resources>
